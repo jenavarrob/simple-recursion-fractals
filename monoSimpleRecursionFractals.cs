@@ -1,128 +1,75 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Collections.Generic;	
 
-public class SimpleRecursionFractals : Form
-{
-    //add here your new fractal string name
-    const string fractalThreeSquares = "three-squares";
-    const string fractalCarpet = "carpet";
-    const string fractalWhiteOnBlack = "white-on-black";
+namespace SimpleRecursionFractals {
+  public class MainForm : Form {
 
-    //add here a different pen and brush colors
-    SolidBrush br1 = new SolidBrush(Color.White);
-    Pen pen1 = new Pen(Color.Black);
-
-    SolidBrush br3 = new SolidBrush(Color.White);
-    Pen pen3 = new Pen(Color.White);
+    // Add here your new fractal string name
+    Dictionary<string, string> fractalNames = new Dictionary<string, string>();
 
     //form components
-    ComboBox cb;
-    Button b;
-    PictureBox pb;
-    TextBox tb;
+    ComboBox cb = new ComboBox();
+    Button bt = new Button();
+    PictureBox pb =  new PictureBox();
+    TextBox tb = new TextBox();
 
-    static public void Main ()
-    {
-        Application.Run (new SimpleRecursionFractals());
+    Graphics gp;
+    Fractals fractal = new Fractals();
+
+    static public void Main () {
+        Application.Run (new MainForm());
     }
 
-    public SimpleRecursionFractals ()
-    {    
+    public MainForm () {    
         Text = "Simple Recursion Fractals";
+
+	fractalNames.Add("threeSquares", "three-squares");
+        fractalNames.Add("whiteCarpet", "white-carpet");
+        fractalNames.Add("blackCarpet", "black-carpet");
 	
-	cb = new ComboBox();
+	// ComboBox
 	cb.Location = new System.Drawing.Point(1, 250);
-	cb.Items.AddRange(new object[] {
-			      fractalThreeSquares,
-			      fractalCarpet,
-			      fractalWhiteOnBlack
-			      });
-	cb.Text = fractalThreeSquares;
+	foreach (string value in fractalNames.Values) {
+		cb.Items.Add(value);
+	}
+	cb.Text = fractalNames["threeSquares"];
 
-	b = new Button();
-	b.Location = new System.Drawing.Point(200, 250);
-        b.Text = "Create";
-        b.Click += new EventHandler (Button_Click);
+	// Button
+	bt.Location = new System.Drawing.Point(200, 250);
+        bt.Text = "Create";
+        bt.Click += new EventHandler (Button_Click);
 
-	pb =  new PictureBox();
+	//PictureBox
 	pb.Size = new System.Drawing.Size(200, 200);
 
-	tb = new TextBox();
+	//TextBox
 	tb.Text = "50";
 	tb.Location = new System.Drawing.Point(130, 250);
 	tb.Size = new System.Drawing.Size(60, 20);
 	
-        Controls.AddRange(new Control[] {b, cb, pb, tb});
+        Controls.AddRange(new Control[] {bt, cb, pb, tb});
+
+    	gp = pb.CreateGraphics();
     }
 
-    private void Button_Click (object sender, EventArgs e)
-    {
-	Graphics g = pb.CreateGraphics();
-	
-        g.Clear(Color.White);
+    private void Button_Click (object sender, EventArgs e) {	
+        gp.Clear(Color.White);
 	int ratio = int.Parse(tb.Text);
-
-	if (cb.SelectedItem.ToString() == fractalThreeSquares){
-           threeSquares(g, 100, 100, ratio);
+	
+	if (cb.SelectedItem.ToString() == fractalNames["threeSquares"]) {
+           fractal.threeSquares(gp, 100, 100, ratio);
 	}
-	else if(cb.SelectedItem.ToString() == fractalCarpet){
-           carpet(g, 100, 100, ratio);
+	else if(cb.SelectedItem.ToString() == fractalNames["whiteCarpet"]) {
+           fractal.whiteCarpet(gp, 100, 100, ratio);
 	}
-	else if(cb.SelectedItem.ToString() == fractalWhiteOnBlack){
-	   g.Clear(Color.Black);
-           whiteOnBlack(g, 100, 100, ratio);
+	else if(cb.SelectedItem.ToString() == fractalNames["blackCarpet"]) {
+	   gp.Clear(Color.Black);
+           fractal.blackCarpet(gp, 100, 100, ratio);
 	}
 
         pb.Update();
     }
-
-    private void threeSquares(Graphics g, int x, int y, int ratioRects)
-    {
-	if (ratioRects > 0)
-	{
-	    int newRatio = ratioRects / 2;
-
-	    threeSquares(g,  x - newRatio, y + newRatio, newRatio);             
-	    threeSquares(g, x - newRatio, y - newRatio, newRatio);
-	    threeSquares(g,  x + newRatio, y - newRatio, newRatio);                
-
-	    g.FillRectangle(br1, x, y, ratioRects, ratioRects);
-	    g.DrawRectangle(pen1, x, y, ratioRects, ratioRects);
-	}
-    }
-
-    private void carpet(Graphics g, int x, int y, int ratioRects)
-    {
-	if (ratioRects > 0)
-	{                
-	    int newRatio = ratioRects / 2;
-
-	    carpet(g, x - ratioRects, y + ratioRects, newRatio);
-	    carpet(g, x + ratioRects, y + ratioRects, newRatio);
-	    carpet(g, x - ratioRects, y - ratioRects, newRatio);
-	    carpet(g, x + ratioRects, y - ratioRects, newRatio);
-
-	    g.FillRectangle(br1, x - newRatio, y - newRatio, ratioRects, ratioRects);
-	    g.DrawRectangle(pen1, x - newRatio, y - newRatio, ratioRects, ratioRects);
-	}
-    }
-
-    private void whiteOnBlack(Graphics g, int x, int y, int ratioRects)
-    {
-	if (ratioRects > 0)
-	{
-	    int newRatio = ratioRects / 2;
-
-	    whiteOnBlack(g, x - ratioRects, y + ratioRects, newRatio);
-	    whiteOnBlack(g, x + ratioRects, y + ratioRects, newRatio);
-	    whiteOnBlack(g, x - ratioRects, y - ratioRects, newRatio);
-	    whiteOnBlack(g, x + ratioRects, y - ratioRects, newRatio);
-
-	    int offset = (int)(newRatio * 0.707);
-
-	    g.FillRectangle(br3, x - newRatio - offset, y - newRatio - offset, ratioRects + offset, ratioRects + offset);
-	    g.DrawRectangle(pen3, x - newRatio - offset, y - newRatio - offset, ratioRects + offset, ratioRects + offset);
-	}
-    }
+  }
 }
