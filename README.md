@@ -16,7 +16,7 @@ sudo apt install mono-devel
 ## How to compile and run
 Compile:
 ```
-mcs monoSimpleRecursionFractals.cs -pkg:dotnet
+mcs monoSimpleRecursionFractals.cs fractalFunctions.cs -pkg:dotnet
 ```
 Run:
 ```
