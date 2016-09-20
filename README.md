@@ -9,8 +9,8 @@ http://www.mono-project.com/docs/getting-started/install/linux/
 
 Do not forget to install also these other packages:
 ```
-sudo apt install mono-mcs
-sudo apt install mono-devel
+sudo apt-get install mono-mcs
+sudo apt-get install mono-devel
 ```
 
 ## How to compile and run
