@@ -19,7 +19,8 @@ namespace SimpleRecursionFractals {
     Fractals fractal = new Fractals();
 
     static public void Main () {
-        Application.Run (new MainForm());
+        MainForm form = new MainForm {Size = new System.Drawing.Size(310, 330)};
+        Application.Run (form);
     }
 
     public MainForm () {    
@@ -29,25 +30,28 @@ namespace SimpleRecursionFractals {
         fractalNames.Add("whiteCarpet", "white-carpet");
         fractalNames.Add("blackCarpet", "black-carpet");
         fractalNames.Add("shentschel_citybuilding", "shentschel_citybuilding");
-	
+
 	// ComboBox
-	cb.Location = new System.Drawing.Point(1, 250);
+	cb.Location = new System.Drawing.Point(10, 250);
 	foreach (string value in fractalNames.Values) {
 		cb.Items.Add(value);
 	}
 	cb.Text = fractalNames["threeSquares"];
 
 	// Button
-	bt.Location = new System.Drawing.Point(200, 250);
+	bt.Location = new System.Drawing.Point(210, 250);
         bt.Text = "Create";
         bt.Click += new EventHandler (Button_Click);
 
 	//PictureBox
+    pb.Location = new System.Drawing.Point(48, 25);
 	pb.Size = new System.Drawing.Size(200, 200);
+    pb.BorderStyle = BorderStyle.FixedSingle;
+    pb.BackColor = Color.White;
 
 	//TextBox
 	tb.Text = "50";
-	tb.Location = new System.Drawing.Point(130, 250);
+	tb.Location = new System.Drawing.Point(140, 250);
 	tb.Size = new System.Drawing.Size(60, 20);
 	
         Controls.AddRange(new Control[] {bt, cb, pb, tb});

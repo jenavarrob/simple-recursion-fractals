@@ -61,16 +61,16 @@ namespace SimpleRecursionFractals
             }
         }
 
-        public void shentschel_hightower(Graphics g, int x, int y, int ratioRects)
+        public void shentschel_citybuilding(Graphics g, int x, int y, int ratioRects)
         {
             if (ratioRects > 0)
             {
                 int newRatio = (int)(ratioRects / 1.5);
-       
-                shentschel_hightower(g, x - ratioRects, y + ratioRects, newRatio);
-                shentschel_hightower(g, x + ratioRects, y - ratioRects, newRatio);
-                shentschel_hightower(g, x - ratioRects, y - ratioRects, newRatio);
-                shentschel_hightower(g, x + ratioRects, y + ratioRects, newRatio);
+
+                shentschel_citybuilding(g, x - ratioRects, y + ratioRects, newRatio);
+                shentschel_citybuilding(g, x + ratioRects, y - ratioRects, newRatio);
+                shentschel_citybuilding(g, x - ratioRects, y - ratioRects, newRatio);
+                shentschel_citybuilding(g, x + ratioRects, y + ratioRects, newRatio);
 
                 g.FillRectangle(brWhite, x - newRatio, y - newRatio, ratioRects, ratioRects);
                 g.DrawRectangle(penBlack, x - newRatio, y - newRatio, ratioRects, ratioRects);
