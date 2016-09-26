@@ -35,7 +35,7 @@ namespace SimpleRecursionFractals {
 	    g.DrawRectangle(penBlack, x - newRatio, y - newRatio, ratioRects, ratioRects);
 	}
 	
-	// System.Threading.Thread.Sleep(10);  //delay to show the recursion
+	// System.Threading.Thread.Sleep(2);  //delay to show the recursion
     }
 
     public void blackCarpet(Graphics g, int x, int y, int ratioRects) {
