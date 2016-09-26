@@ -1,5 +1,5 @@
 # simple-recursion-fractals
-Creates simple fractals based on recursion. This code is for illustrative and learning purposes.
+This project creates simple fractals based on recursion. This code is for illustrative and learning purposes.
 
 ## Setup mono
 Follow the instructions here to install mono:
