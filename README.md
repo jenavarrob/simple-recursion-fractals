@@ -1,7 +1,7 @@
 # simple-recursion-fractals
 This project creates simple fractals based on recursion. This code is for illustrative and learning purposes.
 
-## Setup mono
+## Setup for mono
 Follow the instructions here to install mono:
 ```
 http://www.mono-project.com/docs/getting-started/install/linux/
@@ -23,7 +23,7 @@ Run:
 mono simpleRecursionFractals.exe
 ```
 
-## Setup in Visual Studio (German version)
+## Setup for Visual Studio (German version)
 
 1. Start Visual Studio.
 2. Go to the menu option "Datei->Neu->Projekt aus vorhandenem Code".
