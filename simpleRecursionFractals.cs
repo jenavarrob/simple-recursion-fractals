@@ -30,9 +30,10 @@ namespace SimpleRecursionFractals {
         fractalNames.Add("whiteCarpet", "white-carpet");
         fractalNames.Add("blackCarpet", "black-carpet");
         fractalNames.Add("shentschel_citybuilding", "shentschel_citybuilding");
+        fractalNames.Add("krampMaximilian_spaceInvaders", "krampMaximilian_spaceInvaders");
 
-	// ComboBox
-	cb.Location = new System.Drawing.Point(10, 250);
+            // ComboBox
+            cb.Location = new System.Drawing.Point(10, 250);
 	foreach (string value in fractalNames.Values) {
 		cb.Items.Add(value);
 	}
@@ -77,6 +78,11 @@ namespace SimpleRecursionFractals {
 	    gp.Clear(Color.White);
         fractal.shentschel_citybuilding(gp, 100, 100, ratio);
 	}
+    else if (cb.SelectedItem.ToString() == fractalNames["krampMaximilian_spaceInvaders"])
+    {
+        gp.Clear(Color.White);
+        fractal.krampMaximilian_spaceInvaders(gp, 100, 100, ratio);
+    }
 
         pb.Update();
     }

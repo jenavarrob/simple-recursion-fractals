@@ -75,7 +75,24 @@ namespace SimpleRecursionFractals
                 g.FillRectangle(brWhite, x - newRatio, y - newRatio, ratioRects, ratioRects);
                 g.DrawRectangle(penBlack, x - newRatio, y - newRatio, ratioRects, ratioRects);
             }
-            
+
+        }
+
+        public void krampMaximilian_spaceInvaders(Graphics g, int x, int y, int ratioRects)
+        {
+            if (ratioRects > 0)
+            {
+                int newRatio = (int)(ratioRects / 2);
+
+                krampMaximilian_spaceInvaders(g, x - ratioRects, y * ratioRects, newRatio);
+                krampMaximilian_spaceInvaders(g, x + ratioRects, y - ratioRects, newRatio);
+                krampMaximilian_spaceInvaders(g, x - ratioRects, y - ratioRects, newRatio);
+                krampMaximilian_spaceInvaders(g, x * ratioRects, y + ratioRects, newRatio);
+
+                g.FillRectangle(brWhite, x - newRatio, y - newRatio, ratioRects, ratioRects);
+                g.DrawRectangle(penBlack, x - newRatio, y - newRatio, ratioRects, ratioRects);
+            }
+
         }
     }
 }
